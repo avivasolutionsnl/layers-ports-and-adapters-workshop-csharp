@@ -1,0 +1,33 @@
+@model Web.Models.MeetupOverview
+
+<h1>Upcoming meetups!!!</h1>
+
+@if(!Model.UpcomingMeetups.Any())
+{
+    <p>No upcoming meetups</p>
+}
+
+@foreach (var meetup in Model.UpcomingMeetups)
+{
+    <a name="meetup-@meetup.Id"></a>
+    <h2><a href="/">@meetup.Name</a></h2>
+    <p>Scheduled for @meetup.ScheduledFor</p>
+    <p>@meetup.Description</p>
+}
+
+<p><a href="/" class="btn btn-success">Schedule a meetup</a></p>
+
+<h1>Past meetups</h1>
+
+@if(!Model.PastMeetups.Any())
+{
+    <p>No past meetups</p>
+}
+
+@foreach (var meetup in Model.PastMeetups)
+{
+    <a name="meetup-@meetup.Id"></a>
+    <h2><a href="/">@meetup.Name</a></h2>
+    <p>Scheduled for @meetup.ScheduledFor</p>
+    <p>@meetup.Description</p>
+}
