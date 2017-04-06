@@ -10,7 +10,9 @@
 @foreach (var meetup in Model.UpcomingMeetups)
 {
     <a name="meetup-@meetup.Id"></a>
-    <h2><a href="/">@meetup.Name</a></h2>
+    <h2>
+        <a href="/meetup/details/@meetup.Id">@meetup.Name</a>
+    </h2>
     <p>Scheduled for @meetup.ScheduledFor</p>
     <p>@meetup.Description</p>
 }

@@ -31,23 +31,11 @@ namespace Web.Controllers
             });
         }
 
-        public IActionResult About()
+        public IActionResult Details(long id)
         {
-            ViewData["Message"] = "Your application description page.";
+            var meetup = meetupRepository.GetById(id);
 
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
-        }
-
-        public IActionResult Error()
-        {
-            return View();
+            return View(meetup);
         }
     }
 }

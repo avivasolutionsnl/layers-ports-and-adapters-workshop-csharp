@@ -29,7 +29,7 @@ namespace Shared.Entity
             PersistMeetups(meetups);
         }
 
-        public Meetup GetById(int id)
+        public Meetup GetById(long id)
         {
             var meetups = GetPersistedMeetups();
 
