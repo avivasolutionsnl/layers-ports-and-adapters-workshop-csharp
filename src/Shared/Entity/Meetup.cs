@@ -10,9 +10,9 @@ namespace Shared.Entity
         public long Id {get; private set;}
         public Name Name {get; private set;}
         public Description Description {get; private set;}
-        public DateTime ScheduledFor {get; private set;}
+        public DateTimeOffset ScheduledFor {get; private set;}
 
-        public static Meetup Schedule(Name name, Description description, DateTime scheduledFor)
+        public static Meetup Schedule(Name name, Description description, DateTimeOffset scheduledFor)
         {
             return new Meetup
             {
@@ -22,7 +22,7 @@ namespace Shared.Entity
             };
         }   
 
-        public bool IsUpcoming(DateTime now)
+        public bool IsUpcoming(DateTimeOffset now)
         {
             return now < ScheduledFor;
         }
@@ -50,9 +50,27 @@ namespace Shared.Entity
 
         public void ReadXml (XmlReader reader)
         {
+            reader.ReadStartElement();
+            reader.ReadStartElement("Id");
             Id = reader.ReadContentAsLong();
-            Name = (Name)reader.ReadElementContentAs(typeof(Name), null);
-            Description = (Description)reader.ReadElementContentAs(typeof(Description), null);
+            reader.ReadEndElement();
+
+            reader.ReadStartElement("Name");
+            var name = new Name();
+            name.ReadXml(reader);
+            Name = name;
+            reader.ReadEndElement();
+
+            reader.ReadStartElement("Description");
+            var description = new Description();
+            description.ReadXml(reader);
+            Description = description;
+            reader.ReadEndElement();
+
+            reader.ReadStartElement("ScheduledFor");
+            ScheduledFor = reader.ReadContentAsDateTimeOffset();
+            reader.ReadEndElement();
+            reader.ReadEndElement();
         }
 
         public XmlSchema GetSchema()

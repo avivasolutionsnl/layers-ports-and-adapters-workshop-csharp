@@ -1,4 +1,4 @@
 #!/bin/bash
-cd /app/ScheduleMeetupConsole
+cd /app/src/ScheduleMeetupConsole
 dotnet restore
 dotnet run $@

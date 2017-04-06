@@ -7,12 +7,13 @@ namespace Shared.Entity
     public class Name : IXmlSerializable
     {
         private string text;
+        
+        internal Name(){}
 
         private Name(string text)
         {
             this.text = text;
         }
-        
         public static Name FromString(string text)
         {
             return new Name(text);

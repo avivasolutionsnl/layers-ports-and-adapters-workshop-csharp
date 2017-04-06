@@ -6,13 +6,13 @@ services:
         ports:
             - "5000:5000"
         volumes:
-            - ./src:/app
+            - .:/app
         environment:
             - DOTNET_USE_POLLING_FILE_WATCHER=1
 
     devtools:
         build: docker/devtools/
         volumes:
-            - ./src:/app
+            - .:/app
         depends_on:
             - web

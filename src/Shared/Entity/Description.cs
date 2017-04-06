@@ -8,10 +8,13 @@ namespace Shared.Entity
     {
         private string text;
 
+        internal Description(){}
+        
         private Description(string text)
         {
             this.text = text;
         }
+      
 
         public static Description FromString(string text)
         {

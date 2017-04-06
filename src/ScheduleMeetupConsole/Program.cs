@@ -8,7 +8,7 @@ namespace ScheduleMeetupConsole
     {
         static void Main(string[] args)
         {
-            var meetupRepository = new MeetupRepository("//var//meetup.txt");
+            var meetupRepository = new MeetupRepository("//app//var//meetup.txt");
 
             meetupRepository.Add(Meetup.Schedule(Name.FromString("Helix workshop"), Description.FromString("Mooi"), DateTime.Now));
         }
