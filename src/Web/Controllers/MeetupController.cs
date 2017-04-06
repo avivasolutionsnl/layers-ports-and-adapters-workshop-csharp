@@ -37,5 +37,22 @@ namespace Web.Controllers
 
             return View(meetup);
         }
+
+        [HttpGet]
+        public IActionResult Schedule()
+        {
+            return View(new ScheduleMeetup());
+        }
+
+        [HttpPost]
+        public IActionResult Schedule(ScheduleMeetup meetup)
+        {
+            meetupRepository.Add(Meetup.Schedule(
+                Name.FromString(meetup.Name),
+                Description.FromString(meetup.Description), 
+                meetup.ScheduledFor));  
+
+            return Ok();
+        }
     }
 }

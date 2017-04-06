@@ -1,0 +1,23 @@
+@model Web.Models.ScheduleMeetup
+@using(Html.BeginForm())
+{
+    <p><a href="/meetup">&laquo; List meetups</a></p>
+    <h1>Schedule a meetup</h1>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, new { @class= "control-label" })
+            @Html.TextBoxFor(model => model.Name, new { @class= "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, new { @class= "control-label" })
+            @Html.TextBoxFor(model => model.Description, new { @class= "form-control" })
+        </div>        
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ScheduledFor, new { @class= "control-label" })
+            @Html.TextBoxFor(model => model.ScheduledFor, new { @class= "form-control", type="datetime" })
+        </div>               
+ 
+        <button type="submit"class="btn btn-default">Schedule this meetup</button>
+}
