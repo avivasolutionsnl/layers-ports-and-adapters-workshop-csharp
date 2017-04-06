@@ -2,9 +2,10 @@ using System;
 using System.Xml.Serialization;
 using System.IO;
 using System.Linq;
+using System.Collections;
 using System.Collections.Generic;
 
-namespace Web.Entity
+namespace Shared.Entity
 {
     public class MeetupRepository
     {
@@ -23,7 +24,9 @@ namespace Web.Entity
 
             meetup.SetId(id);
 
-            PersistMeetups(meetups.Union(new []{meetup}));
+            meetups.Add(meetup);
+
+            PersistMeetups(meetups);
         }
 
         public Meetup GetById(int id)
@@ -54,28 +57,28 @@ namespace Web.Entity
             return meetups.Where(x => !x.IsUpcoming(now));
         }
 
-        private void PersistMeetups(IEnumerable<Meetup> meetups) 
+        private void PersistMeetups(List<Meetup> meetups) 
         {
             using(var fileStream = File.OpenWrite(filePath))
             {
-                var serializer = new XmlSerializer(typeof(IEnumerable<Meetup>));
+                var serializer = new XmlSerializer(typeof(List<Meetup>));
 
                 serializer.Serialize(fileStream, meetups);
             }
         }
 
-        private IEnumerable<Meetup> GetPersistedMeetups()
+        private List<Meetup> GetPersistedMeetups()
         {
             if(!File.Exists(filePath))
             {
-                return Enumerable.Empty<Meetup>();
+                return new List<Meetup>();
             }
 
             using(var fileStream = File.OpenRead(filePath))
             {
-                var serializer = new XmlSerializer(typeof(IEnumerable<Meetup>));
+                var serializer = new XmlSerializer(typeof(List<Meetup>));
 
-                return (IEnumerable<Meetup>)serializer.Deserialize(fileStream);
+                return (List<Meetup>)serializer.Deserialize(fileStream);
             }
         }
     }

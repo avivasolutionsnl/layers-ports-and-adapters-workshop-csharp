@@ -1,4 +1,4 @@
 #!/bin/bash
-cd /app
+cd /app/Web
 dotnet restore
 dotnet watch run

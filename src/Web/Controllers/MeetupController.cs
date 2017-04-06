@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-using Web.Entity;
+using Shared.Entity;
 using Web.Models;
 
 namespace Web.Controllers

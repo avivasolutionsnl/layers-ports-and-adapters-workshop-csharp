@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-using Web.Entity;
+using Shared.Entity;
 
 namespace Web.Models
 {
