@@ -1,6 +1,5 @@
 ﻿using System;
-
-using Shared.Entity;
+using Shared.Command;
 
 namespace ScheduleMeetupConsole
 {
@@ -8,9 +7,7 @@ namespace ScheduleMeetupConsole
     {
         static void Main(string[] args)
         {
-            var meetupRepository = new MeetupRepository("//app//var//meetup.txt");
-
-            meetupRepository.Add(Meetup.Schedule(Name.FromString("Helix workshop"), Description.FromString("Mooi"), DateTime.Now));
+            new MeetupApplicationConfig().Execute(args);
         }
     }
 }
