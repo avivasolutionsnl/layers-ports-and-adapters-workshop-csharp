@@ -6,10 +6,15 @@ namespace Shared.Command
 {
     public class ScheduleMeetupCommandHandler
     {
+        private MeetupRepository meetupRepository;
+
+        public ScheduleMeetupCommandHandler(MeetupRepository meetupRepository)
+        {
+            this.meetupRepository = meetupRepository;
+        }
+
         public void Handle(string name, string description, string scheduledFor)
         {
-            var meetupRepository = new MeetupRepository("//app//var//meetup.txt");
-
             meetupRepository.Add(Meetup.Schedule(
                 Name.FromString(name),
                 Description.FromString(description), 

@@ -1,11 +1,19 @@
 using System;
 
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.CommandLineUtils;
 
 namespace Shared.Command
 {
     public class MeetupApplicationConfig
     {
+        private IServiceProvider serviceProvider;
+
+        public MeetupApplicationConfig(IServiceProvider serviceProvider)
+        {
+            this.serviceProvider = serviceProvider;
+        }
+
         public void Execute(string[] args)
         {
             CommandLineApplication commandLineApplication =
@@ -17,7 +25,9 @@ namespace Shared.Command
                 CommandArgument scheduledForArgument = target.Argument("scheduledFor", "Enter a date for the meeting");
 
                 target.OnExecute(() => {
-                    new ScheduleMeetupCommandHandler().Handle(nameArgument.Value, descriptionArgument.Value, scheduledForArgument.Value);
+                    var commandHandler = serviceProvider.GetService<ScheduleMeetupCommandHandler>();
+
+                    commandHandler.Handle(nameArgument.Value, descriptionArgument.Value, scheduledForArgument.Value);
 
                     Console.WriteLine("Successfuly scheduled meetup.");                        
 
