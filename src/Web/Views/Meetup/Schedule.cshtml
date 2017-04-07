@@ -4,6 +4,8 @@
     <p><a href="/meetup">&laquo; List meetups</a></p>
     <h1>Schedule a meetup</h1>
 
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+        
         <div class="form-group">
             @Html.LabelFor(model => model.Name, new { @class= "control-label" })
             @Html.TextBoxFor(model => model.Name, new { @class= "form-control" })

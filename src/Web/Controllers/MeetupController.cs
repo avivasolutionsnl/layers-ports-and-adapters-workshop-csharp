@@ -47,6 +47,21 @@ namespace Web.Controllers
         [HttpPost]
         public IActionResult Schedule(ScheduleMeetup meetup)
         {
+            if(string.IsNullOrEmpty(meetup.Name))
+            {
+                ModelState.AddModelError("Name", "Name cannot be empty");
+            }
+
+            if(string.IsNullOrEmpty(meetup.Description))
+            {
+                ModelState.AddModelError("Description", "Description cannot be empty");
+            }    
+            
+            if(!ModelState.IsValid)
+            {
+                return View(meetup);
+            }       
+
             meetupRepository.Add(Meetup.Schedule(
                 Name.FromString(meetup.Name),
                 Description.FromString(meetup.Description), 
