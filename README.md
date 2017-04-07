@@ -15,3 +15,4 @@
 ## Running development tools
 
 - Run `docker-compose run --rm devtools schedule <name> <description> <scheduledfor>` to use the CLI tool for scheduling meetups.
+- Run `dotnet restore` and `dotnet test` in test\Meetup to run the tests   
