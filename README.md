@@ -10,7 +10,7 @@
 - Clone this repository and `cd` into it.
 - Run `docker-compose build`.
 - Run `docker-compose up -d` to start the web server.
-- Go to [http://localhost/](http://localhost/) in a browser. You should see the homepage of the meetup application.
+- Go to [http://localhost:5000/](http://localhost:5000/) in a browser. You should see the homepage of the meetup application.
 
 ## Running development tools
 
