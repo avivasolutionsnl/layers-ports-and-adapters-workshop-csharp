@@ -67,7 +67,7 @@ namespace Web.Controllers
                 Description.FromString(meetup.Description), 
                 meetup.ScheduledFor));  
 
-            return Ok();
+            return RedirectToAction("Index");
         }
     }
 }
